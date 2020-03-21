@@ -13,8 +13,8 @@ library(dplyr)
 library(tidyr)
 
 #Uploading Data
-WQ<- read.csv("./Data/Data/DG2019_WQTests_raw.csv")
-YSI<-read.csv("./Data/Data/DG2019_YSI_raw.csv")
+WQ<- read.csv("./Project/DataProject_SWAMPdata/Raw/DG2019_WQTests_raw.csv")
+YSI<-read.csv("./Project/DataProject_SWAMPdata/Raw//DG2019_YSI_raw.csv")
 
 #Changing dates for R to acknowledge they are dates
 class(YSI$Date)
@@ -23,10 +23,12 @@ YSI <- transform(YSI, Date = as.Date(as.character(Date), "%Y%m%d"))
 
 class(WQ$Collection.Date)
 
-
+#Collection date listed as DG_20190110_SW, need to break this apart into 3 different collumns
 WQ_NewDate<- WQ %>% separate(Collection.Date, 
                 c("ID", "Date", "Testing Type"))
+#Now the Date column needs to be formatted correctly
 
+WQ_NewDate <- transform(WQ_NewDate, Date = as.Date(as.character(Date), "%Y%m%d"))
 ```
 
 ## R Markdown
