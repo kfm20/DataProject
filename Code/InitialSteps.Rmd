@@ -12,9 +12,13 @@ getwd()
 library(dplyr)
 library(tidyr)
 
+
 #Uploading Data
 WQ<- read.csv("./Raw/DG2019_WQTests_raw.csv")
 YSI<-read.csv("./Raw//DG2019_YSI_raw.csv")
+Duck<-read.csv("./Raw/DuckPond_R.csv")
+Upper<-read.csv("./Raw/UpperPond_R.csv")
+South<-read.csv("./Raw/SouthPool_R.csv")
 
 #Changing dates for R to acknowledge they are dates
 class(YSI$Date)
@@ -36,24 +40,35 @@ WQ_NewDate <- transform(WQ_NewDate, Date = as.Date(as.character(Date), "%Y%m%d")
 write.csv(YSI, row.names = FALSE, file = "./Processed/DG2019_YSIdata_processed.csv")
 
 write.csv(WQ_NewDate, row.names = FALSE, file = "./Processed/DG2019_WQdata_processed.csv")
+
+#There are NA's on a particular date because construction was happening, but we will remove these so they don't mess up our data later. I will name this something different in case we need to go back to dataframe with NA's still included
+#Omit NA's
+WQ_NoNA <- na.omit(WQ_NewDate)
+
+
 ```
 
-## R Markdown
+#Data wrangling Duck Pond
+```{r, message = FALSE}
+#We want the means of the three replicates for each month
+Duck_Means<-aggregate(Duck, by=list(Duck$Month), FUN = mean)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Duck_Means<- Duck_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
+names(Duck_Means)[1]<-paste("Month")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+#YSI data no longer in same dataset, now need to add it back
 
-```{r cars}
-summary(cars)
+#First select only Month and rep 1 from Duck, so we only obtain the ysi data
+Duck_YSI<-filter(Duck, Rep== "Rep1")
+#Now select only YSI columns and month names
+Duck_YSI<-Duck_YSI %>% select(Month, T...C.: pH)
+
+
+#We can join the YSI data and the parameters by month name
+
+Duck_Compilation<- full_join(Duck_Means, Duck_YSI)
+
+#There is a random row 1 with NAs, lets drop this
+Duck_Compilation<-Duck_Compilation[-c(1),]
+#Gone!
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
