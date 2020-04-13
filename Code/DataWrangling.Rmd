@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r, message = FALSE}
+```{r Setting Up, message = FALSE}
 getwd()
 library(dplyr)
 library(tidyr)
@@ -34,7 +34,7 @@ WQ_NewDate<- WQ %>% separate(Collection.Date,
 
 WQ_NewDate <- transform(WQ_NewDate, Date = as.Date(as.character(Date), "%Y%m%d"))
 
-
+class(WQ_NewDate$Date)
 
 #Save altered data sets in processed folder
 write.csv(YSI, row.names = FALSE, file = "./Processed/DG2019_YSIdata_processed.csv")
@@ -49,12 +49,19 @@ WQ_NoNA <- na.omit(WQ_NewDate)
 ```
 
 #Data wrangling Duck Pond
-```{r, message = FALSE}
+```{r Duck Pond Wrangling, message = FALSE}
 #We want the means of the three replicates for each month
 Duck_Means<-aggregate(Duck, by=list(Duck$Month), FUN = mean)
 
 Duck_Means<- Duck_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
 names(Duck_Means)[1]<-paste("Month")
+Duck_Means<-na.omit(Duck_Means) #omitting NAs
+
+#need to name the column that has month names but is called GRoup.1- needs to be month or date?
+
+class(Duck_Means$Group.1)
+class(Duck_YSI$Month)
+names(Duck_Means)[1]<-"Month"
 
 #YSI data no longer in same dataset, now need to add it back
 
@@ -68,7 +75,92 @@ Duck_YSI<-Duck_YSI %>% select(Month, T...C.: pH)
 
 Duck_Compilation<- full_join(Duck_Means, Duck_YSI)
 
-#There is a random row 1 with NAs, lets drop this
-Duck_Compilation<-Duck_Compilation[-c(1),]
-#Gone!
+#Done! YAY!
 ```
+
+```{r South Pond Data Wrangling}
+#We want the means of the three replicates for each month
+South_Means<-aggregate(South, by=list(South$Month), FUN = mean)
+
+South_Means<- South_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
+names(South_Means)[1]<-paste("Month")
+South_Means<-na.omit(South_Means) #omitting NAs
+
+
+
+#YSI data no longer in same dataset, now need to add it back
+
+#First select only Month and rep 1 from Duck, so we only obtain the ysi data
+South_YSI<-filter(South, Rep== "Rep1")
+#Now select only YSI columns and month names
+South_YSI<-South_YSI %>% select(Month, T...C.: pH)
+South_YSI<-na.omit(South_YSI)
+
+#We can join the YSI data and the parameters by month name
+
+South_Compilation<- full_join(South_Means, South_YSI)
+
+#Done! YAY!
+
+
+
+```
+
+
+```{r Upper Pond Data Wrangling}
+#We want the means of the three replicates for each month
+Upper_Means<-aggregate(Upper, by=list(Upper$Month), FUN = mean)
+
+Upper_Means<- Upper_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
+names(Upper_Means)[1]<-paste("Month")
+Upper_Means<-na.omit(Upper_Means) #omitting NAs
+
+
+
+#YSI data no longer in same dataset, now need to add it back
+
+#First select only Month and rep 1 from Duck, so we only obtain the ysi data
+Upper_YSI<-filter(Upper, Rep== "Rep1")
+#Now select only YSI columns and month names
+Upper_YSI<-Upper_YSI %>% select(Month, T...C.: pH)
+Upper_YSI<-na.omit(Upper_YSI)
+
+#We can join the YSI data and the parameters by month name
+
+Upper_Compilation<- full_join(Upper_Means, Upper_YSI)
+Upper_Compilation<-na.omit(Upper_Compilation)
+```
+
+```{r Yearly Means}
+
+DuckYMeans<-Duck_Compilation %>% summarise_if(is.numeric, mean)
+SouthYMeans<-South_Compilation %>% summarise_if(is.numeric, mean)
+UpperYMeans<-Upper_Compilation %>% summarise_if(is.numeric, mean)
+
+DuckYMeans$Site<-c("Duck Pond")
+SouthYMeans$Site<-c("South Pond")
+UpperYMeans$Site<-c("Upper Pond")
+
+#AllMeans2019<-rbind(DuckYMeans, SouthYMeans)
+#AllMeans2019<-rbind(AllMeans2019, UpperYMeans)
+#For some reason names in Upper Pond data are different than the other 2 pond data sets
+
+Table1_Duck<-DuckYMeans %>% select(TP..µg.L., TN..µg.L., TSS..mg.L. ,Fecal.Coliform, pH)
+Table1_South<- SouthYMeans %>% select(TP..µg.L., TN..µg.L., TSS..mg.L. ,Fecal.Coliform, pH)
+Table1_Upper<- UpperYMeans %>% select(TP..µg.L., TN..µg.L., TSS..mg.L. ,Fecal.Coliform, pH)
+```
+
+```{r Graphs}
+library(tidyverse)
+
+ggplot(Duck_Means, aes(x = Month, y = TP..µg.L. )) + 
+  geom_point() 
+
+ggplot(Upper_Means, aes(x = Month, y = TP..µg.L. )) + 
+  geom_point() 
+
+ggplot(South_Means, aes(x = Month, y = TP..µg.L. )) + 
+  geom_point() 
+
+```
+
