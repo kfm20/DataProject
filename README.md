@@ -1,4 +1,4 @@
-# DataProject
+# Data Project
 Data Analysis on Duke University Wetland Center Duke Gardens 2019
 
 ## Summary
@@ -31,7 +31,7 @@ This data was collected, processed, and compiled by the Duke University Wetland 
 Duke University, Duke Gardens, water quality, water testing, watershed restoration, reducing nutrients, nutrient pollution, water supply, monitoring, management, data summary
 
 
-## Folder structure, file formats, and naming conventions 
+## Folder Structure, File Formats, and Naming Conventions 
 **Folder Structure:**
 *Code-R markdown code for data wrangling, data exploration/analysis, and data visualization
 
@@ -89,7 +89,7 @@ Salinity | a measure of the contents of salts | numeric | %
 pH | a measure of how acidic or basic the water is| numeric |
 
 
-## Scripts and code
+## Scripts and Code
 **DataWrangling.Rmd**
 
 This includes the steps required to create a tidy dataset with variables in their own columns, and observations in their own cells, with no blank cells so proper analysis and visualization can be performed. Class of columns are specified, nad column headers edited. My data comes in three different datasets so these steps are performed for each dataset
@@ -103,7 +103,7 @@ Exploration of the three datasets to see if there are any outliers, missing data
 Simple histograms are created to show trends of single variables over time, as well as more complex histograms, scatter plots, and line plots comparing various numeric variables across time nad the three different ponds. These visuals aim to show trends and relationships between variables and ponds. 
 
 
-## Quality assurance/quality control
+## Quality Assurance/Quality Control
 *Protocol has been set by the Duke University Wetland Center for data collection and processing. These procesdures have been happening for many years as part of an ongoing study, and are therefore performed consistently besides any human error.
 
 *All values are checked to see if they are within an expected range of data.
