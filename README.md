@@ -15,10 +15,15 @@ This data was collected, processed, and compiled by the Duke University Wetland 
 Duke University Wetland Center
 
 *Curt Richardson, Director
+
 *Neal Flanagan, Assistant Director
+
 *Belen De La Berrera, Lab Administrator, Main Data Source Contact, belen.de.la.barrera@duke.edu
+
 *Bryan Stokes Cawley, Lab Assistant
+
 *Autumn Dunn, Lab Graduate Assistant
+
 *Kathleen Mason, Lab Graduate Assistant, Main Data Analysis Contact, kathleen.f.mason@duke.edu
 
 
