@@ -33,10 +33,14 @@ Duke University, Duke Gardens, water quality, water testing, watershed restorati
 
 ## Folder structure, file formats, and naming conventions 
 **Folder Structure:**
-Code-R markdown code for data wrangling, data exploration/analysis, and data visualization
-Output-This contains any .pdf documents of maps, as well as .jpg or .png exported files of graphs.
-Processed-Exported .csv files of wrangled datasets, so particular formatted datasets can be accessed again or shared.
-Raw- Original .xlsx sheets of the data, which are also saved as .csv files for use in R.There is one .xlsx and .csv for each of the three ponds.
+*Code-R markdown code for data wrangling, data exploration/analysis, and data visualization
+
+*Output-This contains any .pdf documents of maps, as well as .jpg or .png exported files of graphs.
+
+*Processed-Exported .csv files of wrangled datasets, so particular formatted datasets can be accessed again or shared.
+
+*Raw- Original .xlsx sheets of the data, which are also saved as .csv files for use in R.There is one .xlsx and .csv for each of the three ponds.
+
 
 **Naming Convention:**
 Files are named according to the following naming convention: `databasename_datatype_details_stage.format`, where: 
@@ -55,9 +59,12 @@ Files are named according to the following naming convention: `databasename_data
 ## Metadata
 Description of the data contained in each of the below data sets.
 
-DG2019_UpperPond_raw.csv
-DG2019_SouthPond_raw.csv
-DG2019_DuckPond_raw.csv
+*DG2019_UpperPond_raw.csv
+
+*DG2019_SouthPond_raw.csv
+
+*DG2019_DuckPond_raw.csv
+
 
 Column name | Data Description | Class | Associated Units
 --------|-----|--------|-------
