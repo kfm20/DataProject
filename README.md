@@ -43,15 +43,15 @@ Raw- Original .xlsx sheets of the data, which are also saved as .csv files for u
 Naming Convention:
 Files are named according to the following naming convention: `databasename_datatype_details_stage.format`, where: 
 
-*databasename* refers to the database from where the data originated, all files in this folder include DG2019, or Duke Gardens 2019
+**databasename** refers to the database from where the data originated, all files in this folder include DG2019, or Duke Gardens 2019
 
-*datatype* is a description of data 
+**datatype** is a description of data 
 
-*details* are additional descriptive details, particularly important for processed data or outputs
+**details** are additional descriptive details, particularly important for processed data or outputs
 
-*stage*refers to the stage in data management pipelines (raw, wrangled, or processed)
+**stage**refers to the stage in data management pipelines (raw, wrangled, or processed)
 
-*format* is a non-proprietary file format (.csv, .txt, .pdf, .png, .jpg, .xlsx)
+**format** is a non-proprietary file format (.csv, .txt, .pdf, .png, .jpg, .xlsx)
 
 
 ## Metadata
@@ -101,9 +101,14 @@ Simple histograms are created to show trends of single variables over time, as w
 ## Quality assurance/quality control
 
 *Protocol has been set by the Duke University Wetland Center for data collection and processing. These procesdures have been happening for many years as part of an ongoing study, and are therefore performed consistently besides any human error.
+
 *All values are checked to see if they are within an expected range of data.
+
 *Notes are made by the Lab Administrator of data gaps, unexpected values, or error in processing. These notes are taken into account within analysis.
+
 *Boxplots and visualization techniques are used to discover any outliers within data, and these are flagged accordingly. 
+
 *Data wrangling, exploration, and visualization steps within R are properly annotated for reproducible analysis.
+
 *Naming conventions are used for reproducible files and datasets. 
 
