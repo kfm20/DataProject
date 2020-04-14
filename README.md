@@ -12,7 +12,7 @@ This data was collected, processed, and compiled by the Duke University Wetland 
 
 
 ## Investigators
-Duke University Wetland Center
+**Duke University Wetland Center**
 
 *Curt Richardson, Director
 
@@ -59,28 +59,25 @@ DG2019_UpperPond_raw.csv
 DG2019_SouthPond_raw.csv
 DG2019_DuckPond_raw.csv
 
-Column name, data description, class, associated units
-
-Parameters calculated using laboratory protocols:
-Month, the name of the month the data was collected in, character
-Rep, the number of the replicate sample those data belong to, character
-FOP, ___, numeric, (µg/L)
-TP, total phosphorus concentrations, numeric, (µg/L)
-NOx, total nitrates, numeric, (µg/L)
-NHx, total ammonium, numeric, (µg/L)
-TN, total nitrogen, numeric, (µg/L)
-TSS, total suspended solids, numeric, (mg/L)
-Fecal Coliform, total concentration of the bacteria fecal coliform, numeric, (CFU/100mL)
-
-Parameters Obtained from the YSI:
-T, temperature, numeric, (degrees Celcius)
-Oxygen Saturdation, total oxygen saturation, numeric, (%)
-Oxygen Concentration, total oxygen concentration, numeric, (mg/L)
-Specific Conductivity, how well water can conduct an electric current, numeric, (uS/cm)
-Electrical Conductivity, ___, numeric, (uS/cm)
-Dissolved Solid TDS, total dissolved solids within the water, numeric, (mg/L)
-Salinity, a measure of the contents of salts, numeric, (%)
-pH, a measure of how acidic or basic the water is, numeric
+Column name | Data Description | Class | Associated Units
+--------|-----|--------|-------
+Month | name of the month the data was collected in | character
+Rep | the number of the replicate sample those data belong to | character
+FOP| x | numeric | µg/L
+TP| total phosphorus concentrations | numeric | µg/L
+NOx | total nitrates | numeric | µg/L
+NHx | total ammonium | numeric | µg/L
+TN | total nitrogen | numeric | µg/L
+TSS | total suspended solids | numeric | mg/L
+Fecal Coliform | total concentration of the bacteria fecal coliform | numeric | CFU/100mL
+T | temperature | numeric | degrees Celcius
+Oxygen Saturdation | total oxygen saturation | numeric | %
+Oxygen Concentration | total oxygen concentration | numeric | mg/L
+Specific Conductivity | how well water can conduct an electric current | numeric | uS/cm
+Electrical Conductivity|  x | numeric | uS/cm
+Dissolved Solid TDS | total dissolved solids within the water | numeric | mg/L
+Salinity | a measure of the contents of salts | numeric | %
+pH | a measure of how acidic or basic the water is| numeric |
 
 
 ## Scripts and code
