@@ -72,7 +72,7 @@ Column name | Data Description | Class | Associated Units
 --------|-----|--------|-------
 Month | name of the month the data was collected in | character
 Rep | the number of the replicate sample those data belong to | character
-FOP| x | numeric | µg/L
+FOP| orthophosphorus concentration | numeric | µg/L
 TP| total phosphorus concentrations | numeric | µg/L
 NOx | total nitrates | numeric | µg/L
 NHx | total ammonium | numeric | µg/L
@@ -83,7 +83,7 @@ T | temperature | numeric | degrees Celcius
 Oxygen Saturdation | total oxygen saturation | numeric | %
 Oxygen Concentration | total oxygen concentration | numeric | mg/L
 Specific Conductivity | how well water can conduct an electric current | numeric | uS/cm
-Electrical Conductivity|  x | numeric | uS/cm
+Electrical Conductivity|   | numeric | uS/cm
 Dissolved Solid TDS | total dissolved solids within the water | numeric | mg/L
 Salinity | a measure of the contents of salts | numeric | %
 pH | a measure of how acidic or basic the water is| numeric |
