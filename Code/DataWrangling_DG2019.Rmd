@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling"
+title: "DataWrangling_DG2019"
 author: "Environmental Data Analytics Course Project- Kathleen Mason"
 output: pdf_document
 geometry: margin=2.54cm
