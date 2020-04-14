@@ -42,7 +42,9 @@ Duke University, Duke Gardens, water quality, water testing, watershed restorati
 *Raw- Original .xlsx sheets of the data, which are also saved as .csv files for use in R.There is one .xlsx and .csv for each of the three ponds.
 
 
+
 **Naming Convention:**
+
 Files are named according to the following naming convention: `databasename_datatype_details_stage.format`, where: 
 
 **databasename** refers to the database from where the data originated, all files in this folder include DG2019, or Duke Gardens 2019
