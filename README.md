@@ -28,19 +28,17 @@ Duke University Wetland Center
 
 
 ## Keywords
-
 Duke University, Duke Gardens, water quality, water testing, watershed restoration, reducing nutrients, nutrient pollution, water supply, monitoring, management, data summary
 
 
 ## Folder structure, file formats, and naming conventions 
-
-Folder Structure:
+**Folder Structure:**
 Code-R markdown code for data wrangling, data exploration/analysis, and data visualization
 Output-This contains any .pdf documents of maps, as well as .jpg or .png exported files of graphs.
 Processed-Exported .csv files of wrangled datasets, so particular formatted datasets can be accessed again or shared.
 Raw- Original .xlsx sheets of the data, which are also saved as .csv files for use in R.There is one .xlsx and .csv for each of the three ponds.
 
-Naming Convention:
+**Naming Convention:**
 Files are named according to the following naming convention: `databasename_datatype_details_stage.format`, where: 
 
 **databasename** refers to the database from where the data originated, all files in this folder include DG2019, or Duke Gardens 2019
@@ -55,7 +53,6 @@ Files are named according to the following naming convention: `databasename_data
 
 
 ## Metadata
-
 Description of the data contained in each of the below data sets.
 
 DG2019_UpperPond_raw.csv
@@ -87,19 +84,20 @@ pH, a measure of how acidic or basic the water is, numeric
 
 
 ## Scripts and code
+**DataWrangling.Rmd**
 
-DataWrangling.Rmd
 This includes the steps required to create a tidy dataset with variables in their own columns, and observations in their own cells, with no blank cells so proper analysis and visualization can be performed. Class of columns are specified, nad column headers edited. My data comes in three different datasets so these steps are performed for each dataset
 
-DataExploration.Rmd
+**DataExploration.Rmd**
+
 Exploration of the three datasets to see if there are any outliers, missing data, or out of range data. In addition, edited datasets are saved as processed files, and initial visualizations are performed to find trends and ouliers. 
 
-DataVisualization.Rmd
+**DataVisualization.Rmd**
+
 Simple histograms are created to show trends of single variables over time, as well as more complex histograms, scatter plots, and line plots comparing various numeric variables across time nad the three different ponds. These visuals aim to show trends and relationships between variables and ponds. 
 
 
 ## Quality assurance/quality control
-
 *Protocol has been set by the Duke University Wetland Center for data collection and processing. These procesdures have been happening for many years as part of an ongoing study, and are therefore performed consistently besides any human error.
 
 *All values are checked to see if they are within an expected range of data.
