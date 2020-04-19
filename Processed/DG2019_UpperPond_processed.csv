@@ -1,4 +1,4 @@
-"Month","FOP","TP","NOx","NHx","TN","TSS","Fecal Coliform","TC","O Saturation","O Concentration","Sp. Conductivity","Elec. Conductivity","TDS","Salinity","pH","Month #"
+"Month","FOP","TP","NOx","NHx","TN","TSS","FecalColiform","TC","OSaturation","OConcentration","Sp.Conductivity","Elec.Conductivity","TDS","Salinity","pH","MonthNumber"
 "Jan",12.1,77.7666666666667,290,156.333333333333,1133.33333333333,8.66666666666667,135,11.4,26.1,2.85,272.6,201.8,177.45,0.13,6.28,1
 "Feb",12.5,79.8666666666667,280,41,622.333333333333,18.3333333333333,66.6666666666667,9.6,100.1,11.49,163,115,107,0.03,6.84,2
 "Mar",4,50.1666666666667,287.333333333333,61.3333333333333,928,10.3333333333333,3.33333333333333,11.2,124.1,13.62,291,200,187,0.03,5.9,3

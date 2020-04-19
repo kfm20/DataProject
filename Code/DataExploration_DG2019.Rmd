@@ -31,20 +31,47 @@ dim(South)
 
 ```{r Changing Column Headings}
 
-colnames(Duck)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "Fecal Coliform", "TC", "O Saturation", "O Concentration", "Sp. Conductivity", "Elec. Conductivity", "TDS", "Salinity", "pH", "Month #")
+colnames(Duck)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "FecalColiform", "TC", "O Saturation", "OConcentration", "Sp.Conductivity", "Elec.Conductivity", "TDS", "Salinity", "pH", "MonthNumber")
 write.csv(Duck, row.names = FALSE, file = ("./Processed/DG2019_DuckPond_processed.csv"))
 
-colnames(South)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "Fecal Coliform", "TC", "O Saturation", "O Concentration", "Sp. Conductivity", "Elec. Conductivity", "TDS", "Salinity", "pH", "Month #")
+colnames(South)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "FecalColiform", "TC", "OSaturation", "OConcentration", "Sp.Conductivity", "Elec.Conductivity", "TDS", "Salinity", "pH", "MonthNumber")
 write.csv(South, row.names = FALSE, file = ("./Processed/DG2019_SouthPond_processed.csv"))
 
-colnames(Upper)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "Fecal Coliform", "TC", "O Saturation", "O Concentration", "Sp. Conductivity", "Elec. Conductivity", "TDS", "Salinity", "pH", "Month #")
+colnames(Upper)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "FecalColiform", "TC", "OSaturation", "OConcentration", "Sp.Conductivity", "Elec.Conductivity", "TDS", "Salinity", "pH", "MonthNumber")
 write.csv(Upper, row.names = FALSE, file = ("./Processed/DG2019_UpperPond_processed.csv"))
 ```
 
 
-```{r Finding Outliers}
+```{r }
 #Duck
 ggplot(Duck) +
   geom_histogram(aes(x = TP))
+
+ggplot(Duck)+
+geom_freqpoly(aes(x = TP))
+
+ggplot(Duck)+
+  geom_boxplot(aes(x=TP, y=TN)) #this one isn't a good visualization
+
+#scatterplot will probably be the best visualization plot
+ggplot(Duck) +
+  geom_point(aes(x = TP, y = TN ))
+ggplot(Duck) +
+  geom_point(aes(x =MonthNumber, y = TP))
+```
+
+```{r Prepping for Analysis}
+#selecting columns of interest for analysis
+Duck.subset<- select(Duck, Month,TP:FecalColiform,TDS:MonthNumber)
+#Need to add column of Pond Name if going to combine datasets into one
+
+
+South.subset<- select(Duck, Month,TP:FecalColiform,TDS:MonthNumber)
+
+
+Upper.subset<- select(Duck, Month,TP:FecalColiform,TDS:MonthNumber)
+
+
+DGPonds2019<- full_join(Duck.subset, South.subset)
 ```
 
