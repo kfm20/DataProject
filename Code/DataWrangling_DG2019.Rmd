@@ -11,39 +11,15 @@ editor_options:
 getwd()
 library(dplyr)
 library(tidyr)
+library(tidyverse)
 
 
 #Uploading Data
-WQ<- read.csv("./Raw/DG2019_WQTests_raw.csv")
-YSI<-read.csv("./Raw//DG2019_YSI_raw.csv")
-Duck<-read.csv("./Raw/DuckPond_R.csv")
-Upper<-read.csv("./Raw/UpperPond_R.csv")
-South<-read.csv("./Raw/SouthPool_R.csv")
 
-#Changing dates for R to acknowledge they are dates
-class(YSI$Date)
-#YSI dataset dates were integers previously, now they are correct dates
-YSI <- transform(YSI, Date = as.Date(as.character(Date), "%Y%m%d"))
+Duck<-read.csv("./Raw/DG2019_DuckPond_raw.csv")
+Upper<-read.csv("./Raw/DG2019_UpperPond_raw.csv")
+South<-read.csv("./Raw/DG2019_SouthPond_raw.csv")
 
-class(WQ$Collection.Date)
-
-#Collection date listed as DG_20190110_SW, need to break this apart into 3 different collumns
-WQ_NewDate<- WQ %>% separate(Collection.Date, 
-                c("ID", "Date", "Testing Type"))
-#Now the Date column needs to be formatted correctly
-
-WQ_NewDate <- transform(WQ_NewDate, Date = as.Date(as.character(Date), "%Y%m%d"))
-
-class(WQ_NewDate$Date)
-
-#Save altered data sets in processed folder
-write.csv(YSI, row.names = FALSE, file = "./Processed/DG2019_YSIdata_processed.csv")
-
-write.csv(WQ_NewDate, row.names = FALSE, file = "./Processed/DG2019_WQdata_processed.csv")
-
-#There are NA's on a particular date because construction was happening, but we will remove these so they don't mess up our data later. I will name this something different in case we need to go back to dataframe with NA's still included
-#Omit NA's
-WQ_NoNA <- na.omit(WQ_NewDate)
 
 
 ```
@@ -60,7 +36,6 @@ Duck_Means<-na.omit(Duck_Means) #omitting NAs
 #need to name the column that has month names but is called GRoup.1- needs to be month or date?
 
 class(Duck_Means$Group.1)
-class(Duck_YSI$Month)
 names(Duck_Means)[1]<-"Month"
 
 #YSI data no longer in same dataset, now need to add it back
@@ -131,36 +106,46 @@ Upper_Compilation<- full_join(Upper_Means, Upper_YSI)
 Upper_Compilation<-na.omit(Upper_Compilation)
 ```
 
-```{r Yearly Means}
+```{r Changing Month Names}
 
-DuckYMeans<-Duck_Compilation %>% summarise_if(is.numeric, mean)
-SouthYMeans<-South_Compilation %>% summarise_if(is.numeric, mean)
-UpperYMeans<-Upper_Compilation %>% summarise_if(is.numeric, mean)
+#Duck
+Duck_Compilation<-edit(Duck_Compilation) #made all in three letter format
 
-DuckYMeans$Site<-c("Duck Pond")
-SouthYMeans$Site<-c("South Pond")
-UpperYMeans$Site<-c("Upper Pond")
+#Trying to figure out how to convert the factor into a date
+#class(Duck_Compilation$Month)
+#Duck_Compilation$Month1<-match(Duck_Compilation$Month,month.abb)
+#class(Duck_Compilation$Month1)
+#Duck_Compilation$Month<-as.Date(Duck_Compilation$Month, format = "%B")
+#Kept changing Month to all NAs, so we will continue with Month as a factor for now
 
-#AllMeans2019<-rbind(DuckYMeans, SouthYMeans)
-#AllMeans2019<-rbind(AllMeans2019, UpperYMeans)
-#For some reason names in Upper Pond data are different than the other 2 pond data sets
 
-Table1_Duck<-DuckYMeans %>% select(TP..µg.L., TN..µg.L., TSS..mg.L. ,Fecal.Coliform, pH)
-Table1_South<- SouthYMeans %>% select(TP..µg.L., TN..µg.L., TSS..mg.L. ,Fecal.Coliform, pH)
-Table1_Upper<- UpperYMeans %>% select(TP..µg.L., TN..µg.L., TSS..mg.L. ,Fecal.Coliform, pH)
+#still need to put months in the correct order, since I can;t figure out how to convert the real Month column to date, I will still make the other column of month # corresponding to the Month column, and then use this to reorder the rows so they are in the proper month order
+#Creating the month # column named Month1
+Duck_Compilation$Month1<-match(Duck_Compilation$Month,month.abb)
+#Reorder rows by Month1 or the month #s
+head(Duck_Compilation[order(Duck_Compilation$Month1), ])
+
+#This works correctly so now let's apply it to our data frame
+Duck_Compilation<- Duck_Compilation[order(Duck_Compilation$Month1), ]
+#YES!
+write.csv(Duck_Compilation, row.names = FALSE, file = ("./Processed/DG2019_DuckPond_processed.csv"))
+
+
+#South
+South_Compilation<-edit(South_Compilation) #made all in three letter format
+South_Compilation$Month1<-match(South_Compilation$Month,month.abb)
+South_Compilation<- South_Compilation[order(South_Compilation$Month1), ]
+
+write.csv(South_Compilation, row.names = FALSE, file = ("./Processed/DG2019_SouthPond_processed.csv"))
+
+#Upper
+Upper_Compilation<-edit(Upper_Compilation) #made all in three letter format
+Upper_Compilation$Month1<-match(Upper_Compilation$Month,month.abb)
+Upper_Compilation<- Upper_Compilation[order(Upper_Compilation$Month1), ]
+
+write.csv(Upper_Compilation, row.names = FALSE, file = ("./Processed/DG2019_UpperPond_processed.csv"))
+
+
 ```
 
-```{r Graphs}
-library(tidyverse)
-
-ggplot(Duck_Means, aes(x = Month, y = TP..µg.L. )) + 
-  geom_point() 
-
-ggplot(Upper_Means, aes(x = Month, y = TP..µg.L. )) + 
-  geom_point() 
-
-ggplot(South_Means, aes(x = Month, y = TP..µg.L. )) + 
-  geom_point() 
-
-```
 

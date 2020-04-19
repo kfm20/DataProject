@@ -3,28 +3,48 @@ title: "DataExploration_DG2019"
 author: "Kathleen Mason"
 date: "4/13/2020"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r Getting Setup}
+library(tidyverse)
+
+getwd()
+
+Duck<-read.csv("../Processed/DG2019_DuckPond_processed.csv")
+Upper<-read.csv("../Processed/DG2019_UpperPond_processed.csv")
+South<-read.csv("../Processed/DG2019_SouthPond_processed.csv")
 ```
 
-## R Markdown
- j
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r Examining Dimensions and Setup of Data}
+head(Duck)
+dim(Duck)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+head(Upper)
+dim(Upper)
 
-```{r cars}
-summary(cars)
+head(South)
+dim(South)
+#South Pond has one less row because March had been removed because there was no data
 ```
 
-## Including Plots
+```{r Changing Column Headings}
 
-You can also embed plots, for example:
+colnames(Duck)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "Fecal Coliform", "TC", "O Saturation", "O Concentration", "Sp. Conductivity", "Elec. Conductivity", "TDS", "Salinity", "pH", "Month #")
+write.csv(Duck, row.names = FALSE, file = ("./Processed/DG2019_DuckPond_processed.csv"))
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+colnames(South)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "Fecal Coliform", "TC", "O Saturation", "O Concentration", "Sp. Conductivity", "Elec. Conductivity", "TDS", "Salinity", "pH", "Month #")
+write.csv(South, row.names = FALSE, file = ("./Processed/DG2019_SouthPond_processed.csv"))
+
+colnames(Upper)<-c("Month", "FOP", "TP", "NOx", "NHx", "TN", "TSS", "Fecal Coliform", "TC", "O Saturation", "O Concentration", "Sp. Conductivity", "Elec. Conductivity", "TDS", "Salinity", "pH", "Month #")
+write.csv(Upper, row.names = FALSE, file = ("./Processed/DG2019_UpperPond_processed.csv"))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r Finding Outliers}
+#Duck
+ggplot(Duck) +
+  geom_histogram(aes(x = TP))
+```
+
