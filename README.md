@@ -34,6 +34,7 @@ Precipitation data is stored by NOAA under the National Center for Environmental
 
 
 **NOAA National Center for Environmental Information**
+
 Climate Data Online (CDO)
 
 
@@ -104,6 +105,7 @@ pH | a measure of how acidic or basic the water is| numeric |
 
 
 **Precipitation Data**
+
 *NCEI_DurhamRainStation_raw.csv
 
 
