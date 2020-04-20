@@ -11,6 +11,7 @@ editor_options:
 getwd()
 
 library(tidyverse)
+library(viridis)
 
 #Read in processed file
 DGRainWQ<-read.csv("./Processed/DG2019_RainandWQ_processed.csv")
@@ -23,4 +24,19 @@ DGRainWQ[, "MonthNumber"] <- format(DGRainWQ[,"Date"], "%m")
 DGRainWQ$MonthNumber<-as.Date(DGRainWQ$MonthNumber, format = "%m")
 class(DGRainWQ$MonthNumber)
 ```
+
+```{r Theme}
+mytheme <- theme_light(base_size = 14) +
+  theme(axis.text = element_text(color = "black"), 
+        legend.position = "top")
+theme_set(mytheme)
+```
+
+```{r}
+NvsP <-
+  ggplot(DGRainWQ, aes(x = TP, y = TN, color = TC, shape = PondName)) +
+  geom_point() 
+print(NvsP)
+```
+
 
