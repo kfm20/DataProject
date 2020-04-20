@@ -127,7 +127,11 @@ AllRain<-full_join(AllRain1, RainUpper)
 ```{r Combine Rain and WQ}
 
 DGRainWQ<-full_join(AllRain, DGPonds2019)
+
+
 #SUCCESS
+
+write.csv(DGRainWQ, row.names = FALSE, file = ("./Processed/DG2019_RainandWQ_processed.csv"))
 ```
 
 
