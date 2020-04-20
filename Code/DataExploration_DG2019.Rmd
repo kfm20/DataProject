@@ -78,15 +78,15 @@ RainMonthlyMeans<-aggregate(PRCP ~ Month, Rain , mean )
 
 ```{r Prepping for Analysis}
 #selecting columns of interest for analysis
-Duck.subset<- select(Duck, Month,TP:FecalColiform,TDS:MonthNumber)
+Duck.subset<- select(Duck, Month,TP:TC, OConcentration,TDS:MonthNumber)
 #Need to add column of Pond Name if going to combine datasets into one
 Duck.subset$PondName<- c("Duck")
 
 
-South.subset<- select(South, Month,TP:FecalColiform,TDS:MonthNumber)
+South.subset<- select(South, Month,TP:TC, OConcentration,TDS:MonthNumber)
 South.subset$PondName<- c("South")
 
-Upper.subset<- select(Upper, Month,TP:FecalColiform,TDS:MonthNumber)
+Upper.subset<- select(Upper, Month,TP:TC, OConcentration,TDS:MonthNumber)
 Upper.subset$PondName<- c("Upper")
 
 DGPonds<- full_join(Duck.subset, South.subset)
@@ -153,4 +153,19 @@ ggplot(DGPonds2019) +
   facet_wrap(vars(PondName), nrow = 3)
 
 
+ggplot(DGRainWQ) +
+  geom_point(aes(x = OConcentration, 
+                 y = FecalColiform, 
+                 color = PondName))
+
+ggplot(DGRainWQ) +
+  geom_point(aes(x = FecalColiform, 
+                 y = OConcentration))+
+  facet_wrap(vars(PondName), nrow=3)
+
+
+ggplot(DGRainWQ) +
+  geom_point(aes(x = OConcentration, 
+                 y = FecalColiform))+
+  facet_wrap(vars(PondName), nrow=3)
 ```
