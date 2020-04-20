@@ -2,13 +2,19 @@
 Data Analysis on Duke University Wetland Center Duke Gardens 2019
 
 ## Summary
-Data is sourced from the Duke University Wetland Center, 2019. Data was collected as part of the long term analysis of water quality being contributed from Duke Univeristy's central campus to Sandy Creek and down to the Cape Fear River. Additional water quality data is being collected in the Duke Forest as part of a long term analysis on wetland and stream restoration sites.
+Water Quality Data is sourced from the Duke University Wetland Center, 2019. Data was collected as part of the long term analysis of water quality being contributed from Duke Univeristy's central campus to Sandy Creek and down to the Cape Fear River. Additional water quality data is being collected in the Duke Forest as part of a long term analysis on wetland and stream restoration sites.
 
-Analysis of trends of main parameters like phosphorus, nitrogen, and fecal coliform over time are analyzed to see if there is significance using a time series analysis test. Trends of different parameters over time are analyzed across time using histograms and line plots, and these are compared across ponds. I am interested in seeing if there is a relationship of flow from Upper to Duck then to South Pond of high levels of any parameter. This can be accomplished by visualizing one parameter over time for each pond, and stacking these figures on top of each other. I hope to identify a particular parameter or time frame where high levels move from one pond to another in accordance with the flow of water. This will help indicate potential trends in data over time due to the flow of water, or aid in new restoration or management strategies to reduce the downflow of these nutrients, or by increasing their retention.
+Precipitation Data was sourced from NOAA.This dataset includes daily precipitation for one station, "Durham 1.2 NW, NC US" from January 1, 2019 to December 31, 2019. This is part of a large database within NOAA of past weather pattern data.  <https://www.ncdc.noaa.gov/cdo-web/datasets>
+
+I am curious of the water quality over the months of 2019. I will analyze the general trends in parameters of particular interest, as well as relationships between fecal coliform and oxygen concentration, and precipitation levels and concentrations of nutrients (TN and TP). Looking into a potential relationship between fecal coliform and oxygen concentration goes into the deeper biogeochemistry of the ponds. Duck Pond has access water foul visiting and living pondside. This analysis may allude to their impact on the water quality of the pond. Precipitation and nutriet concentrations are a relevant research question because of the geographic location of the ponds. The ponds, are down slope from a large parking lot used for the hospital. If precipitation causes runoff, and specifically runoff of these nutrients, Upper Pond is the first to recieve it. The water then runs down to Duck Pond, and South Pond before exiting Duke Gardens. 
+
+Analysis of trends of main parameters like phosphorus, nitrogen, and fecal coliform are analyzed over time to see general trends between the ponds. Line plots are used to show these trends between the ponds. Plots comparing fecal coliform and oxygen concentration are constructed to see if there is a relevant relationship. Statistical anaylsis are also performed. Statistical analysis is also performed on precipitation and total phosphorus. These relationships are plotted over the year of 2019 with monthly data points.
 
 
 ## Database Information
-This data was collected, processed, and compiled by the Duke University Wetland Center. It contains data from 3 ponds in Duke Gardens: South, Upper, and Duke Pond, Durham, NC, over the year 2019. Certain water quality parameters are reported from the use of a YSI instrument, while others are from grab samples processed in a lab under various protocols. 
+The qater quality data was collected, processed, and compiled by the Duke University Wetland Center. It contains data from 3 ponds in Duke Gardens: South, Upper, and Duke Pond, Durham, NC, over the year 2019. Certain water quality parameters are reported from the use of a YSI instrument, while others are from grab samples processed in a lab under various protocols. 
+
+Precipitation data is stored by NOAA under the National Center for Environmental Information's Climate Data Online platform. "Data Summaries" was chosen as the dataset as it provides daily precipitation levels at a gage station the nearest to Duke Gardens. This station's identification name is "Durham 1.2 NW, NC US." Because the Duke Gardens water quality data is sampled monthly in 2019, precipitation data was obtained for the 2019 year, following the data range of January 1, 2019 to December 31, 2019. Data from this source is downloaded as a .csv file.
 
 
 ## Investigators
@@ -27,8 +33,14 @@ This data was collected, processed, and compiled by the Duke University Wetland 
 *Kathleen Mason, Lab Graduate Assistant, Main Data Analysis Contact, kathleen.f.mason@duke.edu
 
 
+**NOAA National Center for Environmental Information**
+Climate Data Online (CDO)
+
+
+
+
 ## Keywords
-Duke University, Duke Gardens, water quality, water testing, watershed restoration, reducing nutrients, nutrient pollution, water supply, monitoring, management, data summary
+Duke University, Duke Gardens, water quality, water testing, watershed restoration, reducing nutrients, nutrient pollution, water supply, monitoring, management, data summary, precipitation, runoff, nutrient runoff, biogeochemistry
 
 
 ## Folder Structure, File Formats, and Naming Conventions 
