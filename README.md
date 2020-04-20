@@ -119,11 +119,11 @@ PRCP| Daily precipitation data | numeric | milimeters
 ## Scripts and Code
 **DataWrangling.Rmd**
 
-This includes the steps required to create a tidy dataset with variables in their own columns, and observations in their own cells, with no blank cells so proper analysis and visualization can be performed. Class of columns are specified, nad column headers edited. My data comes in three different datasets so these steps are performed for each dataset
+This includes the steps required to create a tidy dataset with variables in their own columns, and observations in their own cells, with no blank cells so proper analysis and visualization can be performed. Class of columns are specified, and column headers edited. My data comes in three different datasets so these steps are performed for each dataset
 
 **DataExploration.Rmd**
 
-Exploration of the three datasets to see if there are any outliers, missing data, or out of range data. In addition, edited datasets are saved as processed files, and initial visualizations are performed to find trends and ouliers. 
+Exploration of the three datasets to see if there are any outliers, missing data, or out of range data. This led to realization of needing precipitation data, so in this markdown document I wrangle precipitation data as well. Wrangled precipitation data and wrangled pond data are then added together. In addition, edited datasets are saved as processed files, and initial visualizations are performed to find trends, outliers, and potential relationships.
 
 **DataVisualization.Rmd**
 
