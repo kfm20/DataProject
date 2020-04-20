@@ -73,6 +73,8 @@ Files are named according to the following naming convention: `databasename_data
 ## Metadata
 Description of the data contained in each of the below data sets.
 
+
+**Water Quality Data**
 *DG2019_UpperPond_raw.csv
 
 *DG2019_SouthPond_raw.csv
@@ -99,6 +101,19 @@ Electrical Conductivity|   | numeric | uS/cm
 Dissolved Solid TDS | total dissolved solids within the water | numeric | mg/L
 Salinity | a measure of the contents of salts | numeric | %
 pH | a measure of how acidic or basic the water is| numeric |
+
+
+**Precipitation Data**
+*NCEI_DurhamRainStation_raw.csv
+
+
+Column name | Data Description | Class | Associated Units
+--------|-----|--------|-------
+Station | ID number of the precipitation gage | factor | 
+Name | Name of the precipitation gage station |factor |
+Date | Month, day, year the data was recorded |Date |
+PRCP| Daily precipitation data | numeric | milimeters
+
 
 
 ## Scripts and Code
