@@ -217,10 +217,21 @@ ggplot(DGPonds2019,
            , y = TP)) + 
 geom_point( alpha=0.5)+
   geom_smooth(method = 'lm', se = FALSE, color = "skyblue")+
-   xlab(expression("Total Fecal Coliform Concentration \n(CFU/100mL)"))+
+   xlab(expression("Total Fecal Coliform Concentration (CFU/100mL)"))+
 ylab(expression("Total Phosphorus ("~mu~"g/L)"))+
   mytheme
-print(TP_TSS)
+print(TP_Fecal)
+
+TN_Fecal <-
+ggplot(DGPonds2019, 
+       aes(x = FecalColiform
+           , y = TN)) + 
+geom_point( alpha=0.5)+
+  geom_smooth(method = 'lm', se = FALSE, color = "skyblue")+
+   xlab(expression("Total Fecal Coliform Concentration (CFU/100mL)"))+
+ylab(expression("Total Nitrogen ("~mu~"g/L)"))+
+  mytheme
+print(TN_Fecal)
 
 ```
 
