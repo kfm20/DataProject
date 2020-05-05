@@ -32,11 +32,29 @@ mytheme <- theme_light(base_size = 14) +
 theme_set(mytheme)
 ```
 
-```{r}
-NvsP <-
-  ggplot(DGRainWQ, aes(x = TP, y = TN, color = TC, shape = PondName)) +
+```{r }
+FecalvsO <-
+  ggplot(DGRainWQ, aes(x = FecalColiform, y = OConcentration, color = PondName)) +
   geom_point() 
-print(NvsP)
+print(FecalvsO)
+
+
+PvsTN <-
+  ggplot(DGRainWQ, aes(x = PRCP, y = TN, color = PondName)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "black")
+print(PvsTN)
+#I was expecting higher TN and TP with more precipitation, but in fact I am getting the opposite...awesome
+ 
+ggplot(DGRainWQ) +
+  geom_point(aes(x = OConcentration, 
+                 y = FecalColiform))+
+  facet_wrap(vars(PondName), nrow=3)
+
+
+ggplot(DGRainWQ) +
+  geom_point(aes(x = TP, 
+                 y = MonthNumber), color = PondName)
 ```
 
 

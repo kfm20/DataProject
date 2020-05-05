@@ -4,17 +4,15 @@ Data Analysis on Duke University Wetland Center Duke Gardens 2019
 ## Summary
 Water Quality Data is sourced from the Duke University Wetland Center, 2019. Data was collected as part of the long term analysis of water quality being contributed from Duke Univeristy's central campus to Sandy Creek and down to the Cape Fear River. Additional water quality data is being collected in the Duke Forest as part of a long term analysis on wetland and stream restoration sites.
 
-Precipitation Data was sourced from NOAA.This dataset includes daily precipitation for one station, "Durham 1.2 NW, NC US" from January 1, 2019 to December 31, 2019. This is part of a large database within NOAA of past weather pattern data.  <https://www.ncdc.noaa.gov/cdo-web/datasets>
 
-I am curious of the water quality over the months of 2019. I will analyze the general trends in parameters of particular interest, as well as relationships between fecal coliform and oxygen concentration, and precipitation levels and concentrations of nutrients (TN and TP). Looking into a potential relationship between fecal coliform and oxygen concentration goes into the deeper biogeochemistry of the ponds. Duck Pond has access water foul visiting and living pondside. This analysis may allude to their impact on the water quality of the pond. Precipitation and nutriet concentrations are a relevant research question because of the geographic location of the ponds. The ponds, are down slope from a large parking lot used for the hospital. If precipitation causes runoff, and specifically runoff of these nutrients, Upper Pond is the first to recieve it. The water then runs down to Duck Pond, and South Pond before exiting Duke Gardens. 
+I am curious of the water quality over the months of 2019. I will analyze the general trends in parameters of particular interest, as well as relationships between total suspended solids and concentrations of nutrients (TN and TP), as well as fecal coliform and concentrations of nutrients. These analyses go into the deeper biogeochemistry of the ponds. Duck Pond has excess water foul visiting and living pondside, contributing fecal coliform and potentially excess dust particles. This analysis may allude to their impact on the water quality of the pond. Nutriet concentrations are a relevant research question because of the geographic location of the ponds. The ponds, are down slope from a large parking lot used for the hospital. If precipitation causes runoff, and specifically runoff of these nutrients, Upper Pond is the first to recieve it. The water then runs down to Duck Pond, and South Pond before exiting Duke Gardens. 
 
-Analysis of trends of main parameters like phosphorus, nitrogen, and fecal coliform are analyzed over time to see general trends between the ponds. Line plots are used to show these trends between the ponds. Plots comparing fecal coliform and oxygen concentration are constructed to see if there is a relevant relationship. Statistical anaylsis are also performed. Statistical analysis is also performed on precipitation and total phosphorus. These relationships are plotted over the year of 2019 with monthly data points.
+Analysis of trends of main parameters like phosphorus, nitrogen, fecal coliform, pH, and total suspended solids are analyzed over time to see general trends between the ponds. Line plots are used to show these trends between the ponds. Statistical analysis is also performed between TSS and TP, and TN, and fecal coliform and TP, and TN. These relationships are plotted over the year of 2019 with monthly data points.
 
 
 ## Database Information
-The qater quality data was collected, processed, and compiled by the Duke University Wetland Center. It contains data from 3 ponds in Duke Gardens: South, Upper, and Duke Pond, Durham, NC, over the year 2019. Certain water quality parameters are reported from the use of a YSI instrument, while others are from grab samples processed in a lab under various protocols. 
+The water quality data was collected, processed, and compiled by the Duke University Wetland Center. It contains data from 3 ponds in Duke Gardens: South, Upper, and Duke Pond, Durham, NC, over the year 2019. Certain water quality parameters are reported from the use of a YSI instrument, while others are from grab samples processed in a lab under various protocols. 
 
-Precipitation data is stored by NOAA under the National Center for Environmental Information's Climate Data Online platform. "Data Summaries" was chosen as the dataset as it provides daily precipitation levels at a gage station the nearest to Duke Gardens. This station's identification name is "Durham 1.2 NW, NC US." Because the Duke Gardens water quality data is sampled monthly in 2019, precipitation data was obtained for the 2019 year, following the data range of January 1, 2019 to December 31, 2019. Data from this source is downloaded as a .csv file.
 
 
 ## Investigators
@@ -33,15 +31,12 @@ Precipitation data is stored by NOAA under the National Center for Environmental
 *Kathleen Mason, Lab Graduate Assistant, Main Data Analysis Contact, kathleen.f.mason@duke.edu
 
 
-**NOAA National Center for Environmental Information**
-
-Climate Data Online (CDO)
 
 
 
 
 ## Keywords
-Duke University, Duke Gardens, water quality, water testing, watershed restoration, reducing nutrients, nutrient pollution, water supply, monitoring, management, data summary, precipitation, runoff, nutrient runoff, biogeochemistry
+Duke University, Duke Gardens, water quality, water testing, watershed restoration, reducing nutrients, nutrient pollution, water supply, monitoring, management, data summary, nutrient runoff, biogeochemistry
 
 
 ## Folder Structure, File Formats, and Naming Conventions 
@@ -104,17 +99,6 @@ Salinity | a measure of the contents of salts | numeric | %
 pH | a measure of how acidic or basic the water is| numeric |
 
 
-**Precipitation Data**
-
-*NCEI_DurhamRainStation_raw.csv
-
-
-Column name | Data Description | Class | Associated Units
---------|-----|--------|-------
-Station | ID number of the precipitation gage | factor | 
-Name | Name of the precipitation gage station |factor |
-Date | Month, day, year the data was recorded |Date |
-PRCP| Daily precipitation data | numeric | milimeters
 
 
 

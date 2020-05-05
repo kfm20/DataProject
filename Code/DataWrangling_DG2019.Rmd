@@ -13,140 +13,214 @@ library(dplyr)
 library(tidyr)
 library(tidyverse)
 
+mytheme <- theme_light(base_size = 14) +
+  theme(axis.text = element_text(color = "black"), 
+        legend.position = "right")
+theme_set(mytheme)
+
 
 #Uploading Data
 
-Duck<-read.csv("./Raw/DG2019_DuckPond_raw.csv")
-Upper<-read.csv("./Raw/DG2019_UpperPond_raw.csv")
-South<-read.csv("./Raw/DG2019_SouthPond_raw.csv")
+Duck<-read.csv("./Raw/DG2019_DuckPond_NEW.csv")
+Upper<-read.csv("./Raw/DG2019_UpperPond_NEW.csv")
+South<-read.csv("./Raw/DG2019_SouthPond_NEW.csv")
 
+
+Duck$Date <- as.Date(Duck$Date, format = "%m/%d/%y")
+Duck$PondName<-c("Duck")
+
+Upper$Date <- as.Date(Upper$Date, format = "%m/%d/%y")
+Upper$PondName<-c("Upper")
+
+South$Date <- as.Date(South$Date, format = "%m/%d/%y")
+South$PondName<-c("South")
+
+
+Join1<- full_join(Duck, Upper)
+fulljoined<- full_join(Join1, South)
+DGPonds2019<- fulljoined
+```
+
+
+```{r Duck Mean, Max, Min}
+
+
+mean(Duck$TP)
+max(Duck$TP)
+min(Duck$TP)
+
+mean(Duck$TN)
+max(Duck$TN)
+min(Duck$TN)
+
+mean(Duck$TSS)
+max(Duck$TSS)
+min(Duck$TSS)
+
+mean(Duck$FecalColiform)
+max(Duck$FecalColiform)
+min(Duck$FecalColiform)
+
+mean(Duck$pH)
+max(Duck$pH)
+min(Duck$pH)
+```
+
+```{r South}
+
+mean(South$TP)
+max(South$TP)
+min(South$TP)
+
+mean(South$TN)
+max(South$TN)
+min(South$TN)
+
+mean(South$TSS)
+max(South$TSS)
+min(South$TSS)
+
+mean(South$FecalColiform)
+max(South$FecalColiform)
+min(South$FecalColiform)
+
+mean(South$pH)
+max(South$pH)
+min(South$pH)
+```
+
+```{r Upper}
+
+mean(Upper$TP)
+max(Upper$TP)
+min(Upper$TP)
+
+mean(Upper$TN)
+max(Upper$TN)
+min(Upper$TN)
+
+mean(Upper$TSS)
+max(Upper$TSS)
+min(Upper$TSS)
+
+mean(Upper$FecalColiform)
+max(Upper$FecalColiform)
+min(Upper$FecalColiform)
+
+mean(Upper$pH)
+max(Upper$pH)
+min(Upper$pH)
+```
+
+```{r TP and TN over Time Figures}
+
+ggplot(DGPonds2019) +
+  geom_point(aes(x = Date, y = TP, color = PondName))+
+  ylab(expression("Total Phosphorus ("~mu~"g/L)"))+
+  xlab("")+
+  mytheme
+
+ggplot(DGPonds2019) +
+  geom_point(aes(x = Date, y = TN, color = PondName))+
+  ylab(expression("Total Nitrogen ("~mu~"g/L)"))+
+  xlab("")+
+  mytheme
+
+ggplot(DGPonds2019) +
+  geom_point(aes(x = Date, y = TSS, color = PondName))+
+  ylab(expression("Total Suspended \nSolids (mg/L)"))+
+  xlab("")+
+  mytheme
+
+ggplot(DGPonds2019) +
+  geom_point(aes(x = Date, y = FecalColiform, color = PondName))+
+  ylab(expression("Total Fecal \nColiform Concentration \n(CFU/100mL)"))+
+  xlab("")+
+  mytheme
+
+ggplot(DGPonds2019) +
+  geom_point(aes(x = Date, y = pH, color = PondName))+
+  ylab(expression("pH"))+
+  xlab("")+
+  mytheme
+```
+
+##Research Questions
+#Question 1: Does TSS Predict TN or TP?
+```{r Statistical Analysis Q1}
+#Does TSS predict TN or TP?
+#Linear REgression
+
+#TN_TSS
+DGregression1<-lm(DGPonds2019$TSS~DGPonds2019$TN)
+summary(DGregression1)
+
+cor.test(DGPonds2019$TSS, DGPonds2019$TN)
+
+
+#TP_TSS
+DGregression2<-lm(DGPonds2019$TSS~DGPonds2019$TP)
+summary(DGregression2)
+
+cor.test(DGPonds2019$TSS, DGPonds2019$TP)
+```
+
+#GRaph Statistical Analysis
+```{r Linear Regressions Graphed Q1}
+
+TN_TSS <-
+ggplot(DGPonds2019, 
+       aes(x = TSS, y = TN)) + 
+geom_point( alpha=0.5)+
+  geom_smooth(method = 'lm', se = FALSE, color = "skyblue")+
+  xlab(expression("Total Suspended Solids (mg/L)"))+
+ylab(expression("Total Nitrogen ("~mu~"g/L)"))+
+  mytheme
+print(TN_TSS)
+
+
+
+TP_TSS <-
+ggplot(DGPonds2019, 
+       aes(x = TSS, y = TP)) + 
+geom_point( alpha=0.5)+
+  geom_smooth(method = 'lm', se = FALSE, color = "skyblue")+
+  xlab(expression("Total Suspended Solids (mg/L)"))+
+ylab(expression("Total Phosphorus ("~mu~"g/L)"))+
+  mytheme
+print(TP_TSS)
 
 
 ```
 
-#Data wrangling Duck Pond
-```{r Duck Pond Wrangling, message = FALSE}
-#We want the means of the three replicates for each month
-Duck_Means<-aggregate(Duck, by=list(Duck$Month), FUN = mean)
 
-Duck_Means<- Duck_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
-names(Duck_Means)[1]<-paste("Month")
-Duck_Means<-na.omit(Duck_Means) #omitting NAs
+#Question 2: Does fecal coliform concentrations determine TP or TN?
+```{r Statistical Analysis Q2}
 
-#need to name the column that has month names but is called GRoup.1- needs to be month or date?
+DGregression3<-lm(DGPonds2019$FecalColiform~DGPonds2019$TN)
+summary(DGregression3)
 
-class(Duck_Means$Group.1)
-names(Duck_Means)[1]<-"Month"
-
-#YSI data no longer in same dataset, now need to add it back
-
-#First select only Month and rep 1 from Duck, so we only obtain the ysi data
-Duck_YSI<-filter(Duck, Rep== "Rep1")
-#Now select only YSI columns and month names
-Duck_YSI<-Duck_YSI %>% select(Month, T...C.: pH)
-
-
-#We can join the YSI data and the parameters by month name
-
-Duck_Compilation<- full_join(Duck_Means, Duck_YSI)
-
-#Done! YAY!
-```
-
-```{r South Pond Data Wrangling}
-#We want the means of the three replicates for each month
-South_Means<-aggregate(South, by=list(South$Month), FUN = mean)
-
-South_Means<- South_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
-names(South_Means)[1]<-paste("Month")
-South_Means<-na.omit(South_Means) #omitting NAs
+cor.test(DGPonds2019$FecalColiform, DGPonds2019$TN)
 
 
 
-#YSI data no longer in same dataset, now need to add it back
 
-#First select only Month and rep 1 from Duck, so we only obtain the ysi data
-South_YSI<-filter(South, Rep== "Rep1")
-#Now select only YSI columns and month names
-South_YSI<-South_YSI %>% select(Month, T...C.: pH)
-South_YSI<-na.omit(South_YSI)
+DGregression4<-lm(DGPonds2019$FecalColiform~DGPonds2019$TP)
+summary(DGregression4)
 
-#We can join the YSI data and the parameters by month name
-
-South_Compilation<- full_join(South_Means, South_YSI)
-
-#Done! YAY!
+cor.test(DGPonds2019$FecalColiform, DGPonds2019$TP)
 
 
+TP_Fecal <-
+ggplot(DGPonds2019, 
+       aes(x = FecalColiform
+           , y = TP)) + 
+geom_point( alpha=0.5)+
+  geom_smooth(method = 'lm', se = FALSE, color = "skyblue")+
+   xlab(expression("Total Fecal Coliform Concentration \n(CFU/100mL)"))+
+ylab(expression("Total Phosphorus ("~mu~"g/L)"))+
+  mytheme
+print(TP_TSS)
 
 ```
-
-
-```{r Upper Pond Data Wrangling}
-#We want the means of the three replicates for each month
-Upper_Means<-aggregate(Upper, by=list(Upper$Month), FUN = mean)
-
-Upper_Means<- Upper_Means %>% select(Group.1, FOP..µg.L.: Fecal.Coliform) 
-names(Upper_Means)[1]<-paste("Month")
-Upper_Means<-na.omit(Upper_Means) #omitting NAs
-
-
-
-#YSI data no longer in same dataset, now need to add it back
-
-#First select only Month and rep 1 from Duck, so we only obtain the ysi data
-Upper_YSI<-filter(Upper, Rep== "Rep1")
-#Now select only YSI columns and month names
-Upper_YSI<-Upper_YSI %>% select(Month, T...C.: pH)
-Upper_YSI<-na.omit(Upper_YSI)
-
-#We can join the YSI data and the parameters by month name
-
-Upper_Compilation<- full_join(Upper_Means, Upper_YSI)
-Upper_Compilation<-na.omit(Upper_Compilation)
-```
-
-```{r Changing Month Names}
-
-#Duck
-Duck_Compilation<-edit(Duck_Compilation) #made all in three letter format
-
-#Trying to figure out how to convert the factor into a date
-#class(Duck_Compilation$Month)
-#Duck_Compilation$Month1<-match(Duck_Compilation$Month,month.abb)
-#class(Duck_Compilation$Month1)
-#Duck_Compilation$Month<-as.Date(Duck_Compilation$Month, format = "%B")
-#Kept changing Month to all NAs, so we will continue with Month as a factor for now
-
-
-#still need to put months in the correct order, since I can;t figure out how to convert the real Month column to date, I will still make the other column of month # corresponding to the Month column, and then use this to reorder the rows so they are in the proper month order
-#Creating the month # column named Month1
-Duck_Compilation$Month1<-match(Duck_Compilation$Month,month.abb)
-#Reorder rows by Month1 or the month #s
-head(Duck_Compilation[order(Duck_Compilation$Month1), ])
-
-#This works correctly so now let's apply it to our data frame
-Duck_Compilation<- Duck_Compilation[order(Duck_Compilation$Month1), ]
-#YES!
-write.csv(Duck_Compilation, row.names = FALSE, file = ("./Processed/DG2019_DuckPond_processed.csv"))
-
-
-#South
-South_Compilation<-edit(South_Compilation) #made all in three letter format
-South_Compilation$Month1<-match(South_Compilation$Month,month.abb)
-South_Compilation<- South_Compilation[order(South_Compilation$Month1), ]
-
-
-write.csv(South_Compilation, row.names = FALSE, file = ("./Processed/DG2019_SouthPond_processed.csv"))
-
-#Upper
-Upper_Compilation<-edit(Upper_Compilation) #made all in three letter format
-Upper_Compilation$Month1<-match(Upper_Compilation$Month,month.abb)
-Upper_Compilation<- Upper_Compilation[order(Upper_Compilation$Month1), ]
-
-write.csv(Upper_Compilation, row.names = FALSE, file = ("./Processed/DG2019_UpperPond_processed.csv"))
-
-
-```
-
 
