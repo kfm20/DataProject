@@ -71,11 +71,11 @@ Description of the data contained in each of the below data sets.
 
 
 **Water Quality Data**
-*DG2019_UpperPond_raw.csv
+*DG2019_UpperPond_RAW.csv
 
-*DG2019_SouthPond_raw.csv
+*DG2019_SouthPond_RAW.csv
 
-*DG2019_DuckPond_raw.csv
+*DG2019_DuckPond_RAW.csv
 
 
 Column name | Data Description | Class | Associated Units
@@ -105,15 +105,8 @@ pH | a measure of how acidic or basic the water is| numeric |
 ## Scripts and Code
 **DataWrangling.Rmd**
 
-This includes the steps required to create a tidy dataset with variables in their own columns, and observations in their own cells, with no blank cells so proper analysis and visualization can be performed. Class of columns are specified, and column headers edited. My data comes in three different datasets so these steps are performed for each dataset
+This includes the steps required to create a tidy dataset. My data comes in three different datasets so these steps are performed for each dataset, and then work to combine them. Visualization of general trends over time are also worked out within their own chunks, as well as calculations of mean, minimum, and maximums for particular parameters. Finally, statisticall analysis and graphics of these statistical analyses are performed to answer the stated research questions. 
 
-**DataExploration.Rmd**
-
-Exploration of the three datasets to see if there are any outliers, missing data, or out of range data. This led to realization of needing precipitation data, so in this markdown document I wrangle precipitation data as well. Wrangled precipitation data and wrangled pond data are then added together. In addition, edited datasets are saved as processed files, and initial visualizations are performed to find trends, outliers, and potential relationships.
-
-**DataVisualization.Rmd**
-
-Simple histograms are created to show trends of single variables over time, as well as more complex histograms, scatter plots, and line plots comparing various numeric variables across time nad the three different ponds. These visuals aim to show trends and relationships between variables and ponds. 
 
 
 ## Quality Assurance/Quality Control
