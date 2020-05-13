@@ -20,7 +20,7 @@ The water quality data was collected, processed, and compiled by the Duke Univer
 
 *Curt Richardson, Director
 
-*Neal Flanagan, Assistant Director
+*Neal Flanagan
 
 *Belen De La Berrera, Lab Administrator, Main Data Source Contact, belen.de.la.barrera@duke.edu
 

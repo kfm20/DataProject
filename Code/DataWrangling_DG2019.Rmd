@@ -235,3 +235,8 @@ print(TN_Fecal)
 
 ```
 
+```{r Save the updated, combined dataset}
+write.csv(DGPonds2019, row.names = FALSE, file = ("./Processed/DG2019_Combined_PROCESSED"))
+
+```
+
